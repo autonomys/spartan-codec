@@ -252,21 +252,25 @@ mod tests {
     fn test_random_piece_256_bits() {
         test_random_piece::<32>();
     }
+
     // 512 bits
     #[test]
     fn test_random_piece_512_bits() {
         test_random_piece::<64>();
     }
+
     // 1024 bits
     #[test]
     fn test_random_piece_1024_bits() {
         test_random_piece::<128>();
     }
+
     // 2048 bits
     #[test]
     fn test_random_piece_2048_bits() {
         test_random_piece::<256>();
     }
+
     // 4096 bits
     #[test]
     fn test_random_piece_4096_bits() {
@@ -274,9 +278,9 @@ mod tests {
     }
 
     fn test_random_piece<const PRIME_SIZE_BYTES: usize>() {
-        let expanded_iv = random_bytes::<PRIME_SIZE_BYTES>();
+        let expanded_iv = random_bytes();
+        let piece = random_bytes();
 
-        let piece = random_bytes::<4096>();
         let sloth = Sloth::<PRIME_SIZE_BYTES, 4096>::new();
         let layers = 4096 / PRIME_SIZE_BYTES;
         let mut encoding = piece.clone();
