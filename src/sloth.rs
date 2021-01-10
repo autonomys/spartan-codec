@@ -250,39 +250,39 @@ mod tests {
     // 256 bits
     #[test]
     fn test_random_piece_256_bits() {
-        test_random_piece::<32>();
+        test_random_piece::<32, 4096>();
     }
 
     // 512 bits
     #[test]
     fn test_random_piece_512_bits() {
-        test_random_piece::<64>();
+        test_random_piece::<64, 4096>();
     }
 
     // 1024 bits
     #[test]
     fn test_random_piece_1024_bits() {
-        test_random_piece::<128>();
+        test_random_piece::<128, 4096>();
     }
 
     // 2048 bits
     #[test]
     fn test_random_piece_2048_bits() {
-        test_random_piece::<256>();
+        test_random_piece::<256, 4096>();
     }
 
     // 4096 bits
     #[test]
     fn test_random_piece_4096_bits() {
-        test_random_piece::<512>();
+        test_random_piece::<512, 4096>();
     }
 
-    fn test_random_piece<const PRIME_SIZE_BYTES: usize>() {
+    fn test_random_piece<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>() {
         let expanded_iv = random_bytes();
         let piece = random_bytes();
 
-        let sloth = Sloth::<PRIME_SIZE_BYTES, 4096>::new();
-        let layers = 4096 / PRIME_SIZE_BYTES;
+        let sloth = Sloth::<PRIME_SIZE_BYTES, PIECE_SIZE_BYTES>::new();
+        let layers = PIECE_SIZE_BYTES / PRIME_SIZE_BYTES;
         let mut encoding = piece.clone();
         sloth.encode(&mut encoding, expanded_iv, layers).unwrap();
         let mut decoding = encoding.clone();
