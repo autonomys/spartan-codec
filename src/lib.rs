@@ -58,19 +58,23 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
         piece == self.genesis_piece
     }
 
-    pub fn decode_parallel(
+    #[cfg(feature = "parallel")]
+    pub fn is_valid_parallel(
         &self,
-        piece: &mut [u8; PIECE_SIZE_BYTES],
+        piece: [u8; PIECE_SIZE_BYTES],
         encoding_key_hash: [u8; PRIME_SIZE_BYTES],
         nonce: u32,
         rounds: usize,
-    ) {
+    ) -> bool {
+        let mut piece = piece;
         let mut expanded_iv = encoding_key_hash;
         for (i, &byte) in nonce.to_le_bytes().iter().rev().enumerate() {
             expanded_iv[PRIME_SIZE_BYTES - i - 1] ^= byte;
         }
 
-        self.sloth.decode_parallel(piece, expanded_iv, rounds);
+        self.sloth.decode_parallel(&mut piece, expanded_iv, rounds);
+
+        piece == self.genesis_piece
     }
 }
 
@@ -95,5 +99,7 @@ mod tests {
         let encoding = spartan.encode(encoding_key, nonce, 1);
 
         assert!(spartan.is_valid(encoding, encoding_key, nonce, 1));
+
+        assert!(spartan.is_valid_parallel(encoding, encoding_key, nonce, 1));
     }
 }

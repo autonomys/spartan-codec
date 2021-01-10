@@ -2,7 +2,6 @@
 /// https://eprint.iacr.org/2015/366
 /// based on pysloth C implementation by Mathias Michno
 /// https://github.com/randomchain/pysloth/blob/master/sloth.c
-use rayon::prelude::*;
 use rug::ops::NegAssign;
 use rug::{integer::IsPrime, integer::Order, ops::BitXorFrom, Integer};
 use std::iter;
@@ -158,6 +157,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
         write_integers_to_array(&integer_piece, piece, PRIME_SIZE_BYTES);
     }
 
+    #[cfg(feature = "parallel")]
     /// Decodes a 4096 byte encoding in parallel in time << encode time
     pub(super) fn decode_parallel(
         &self,
@@ -165,6 +165,8 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
         expanded_iv: [u8; PRIME_SIZE_BYTES],
         layers: usize,
     ) {
+        use rayon::prelude::*;
+
         // convert encoding to integer representation
         let mut integer_piece: Vec<Integer> = piece
             .chunks_exact(PRIME_SIZE_BYTES)
