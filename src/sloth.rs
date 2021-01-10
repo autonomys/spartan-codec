@@ -114,43 +114,6 @@ impl Sloth {
         }
     }
 
-    /// Computes the modular square root of data, for data smaller than prime (w.h.p.)
-    pub fn sqrt_permutation(&self, data: &mut Integer) -> Result<(), DataBiggerThanPrime> {
-        // better error handling
-        if data.as_ref() >= self.prime.as_ref() {
-            return Err(DataBiggerThanPrime);
-        }
-
-        if data.jacobi(&self.prime) == 1 {
-            data.pow_mod_mut(&self.exponent, &self.prime).unwrap();
-            if data.is_odd() {
-                data.neg_assign();
-                data.add_assign(&self.prime);
-            }
-        } else {
-            data.neg_assign();
-            data.add_assign(&self.prime);
-            data.pow_mod_mut(&self.exponent, &self.prime).unwrap();
-            if data.is_even() {
-                data.neg_assign();
-                data.add_assign(&self.prime);
-            }
-        }
-
-        Ok(())
-    }
-
-    /// Inverts the sqrt permutation with a single squaring mod prime
-    pub fn inverse_sqrt(&self, data: &mut Integer) {
-        let is_odd = data.is_odd();
-        data.square_mut();
-        data.pow_mod_mut(&Integer::from(1), &self.prime).unwrap();
-        if is_odd {
-            data.neg_assign();
-            data.add_assign(&self.prime);
-        }
-    }
-
     /// Sequentially encodes a 4096 byte piece s.t. a minimum amount of wall clock time elapses
     pub fn encode(
         &self,
@@ -248,6 +211,43 @@ impl Sloth {
 
         // transform integers back to bytes
         write_integers_to_array(&integer_piece, piece, self.block_size_bytes);
+    }
+
+    /// Computes the modular square root of data, for data smaller than prime (w.h.p.)
+    fn sqrt_permutation(&self, data: &mut Integer) -> Result<(), DataBiggerThanPrime> {
+        // better error handling
+        if data.as_ref() >= self.prime.as_ref() {
+            return Err(DataBiggerThanPrime);
+        }
+
+        if data.jacobi(&self.prime) == 1 {
+            data.pow_mod_mut(&self.exponent, &self.prime).unwrap();
+            if data.is_odd() {
+                data.neg_assign();
+                data.add_assign(&self.prime);
+            }
+        } else {
+            data.neg_assign();
+            data.add_assign(&self.prime);
+            data.pow_mod_mut(&self.exponent, &self.prime).unwrap();
+            if data.is_even() {
+                data.neg_assign();
+                data.add_assign(&self.prime);
+            }
+        }
+
+        Ok(())
+    }
+
+    /// Inverts the sqrt permutation with a single squaring mod prime
+    fn inverse_sqrt(&self, data: &mut Integer) {
+        let is_odd = data.is_odd();
+        data.square_mut();
+        data.pow_mod_mut(&Integer::from(1), &self.prime).unwrap();
+        if is_odd {
+            data.neg_assign();
+            data.add_assign(&self.prime);
+        }
     }
 }
 
