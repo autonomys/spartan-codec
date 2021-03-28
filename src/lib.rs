@@ -33,7 +33,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
     pub fn encode(
         &self,
         encoding_key_hash: [u8; PRIME_SIZE_BYTES],
-        nonce: u32,
+        nonce: u64,
         rounds: usize,
     ) -> [u8; PIECE_SIZE_BYTES] {
         let mut expanded_iv = encoding_key_hash;
@@ -54,7 +54,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
         &self,
         piece: [u8; PIECE_SIZE_BYTES],
         encoding_key_hash: [u8; PRIME_SIZE_BYTES],
-        nonce: u32,
+        nonce: u64,
         rounds: usize,
     ) -> bool {
         let mut piece = piece;
@@ -73,7 +73,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
         &self,
         piece: [u8; PIECE_SIZE_BYTES],
         encoding_key_hash: [u8; PRIME_SIZE_BYTES],
-        nonce: u32,
+        nonce: u64,
         rounds: usize,
     ) -> bool {
         let mut piece = piece;
