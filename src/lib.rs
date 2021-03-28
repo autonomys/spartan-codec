@@ -7,6 +7,16 @@ pub struct Spartan<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
     sloth: Sloth<PRIME_SIZE_BYTES, PIECE_SIZE_BYTES>,
 }
 
+impl Spartan<8, 4096> {
+    pub fn new(genesis_piece: [u8; 4096]) -> Self {
+        let sloth = Sloth::new();
+        Self {
+            genesis_piece,
+            sloth,
+        }
+    }
+}
+
 impl Spartan<32, 4096> {
     pub fn new(genesis_piece: [u8; 4096]) -> Self {
         let sloth = Sloth::new();
