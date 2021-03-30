@@ -27,6 +27,6 @@ cargo build --release
 
 ### Run Benches
 
-`cargo bench`
+TODO
 
 Benches single block encode/decode time and full piece encode/decode time for each prime size.
