@@ -1,6 +1,6 @@
 <div align="center">
   <h1><code>spartan</code></h1>
-  <strong>A proof-of-concept encoder for the <a href="https://subspace.network/">Subspace Network Blockchain</a> based on the <a href-"https://eprint.iacr.org/2015/366">SLOTH permutation</a></strong>
+  <strong>A proof-of-concept encoder for the <a href="https://subspace.network/">Subspace Network Blockchain</a> based on the <a href="https://eprint.iacr.org/2015/366">SLOTH permutation</a></strong>
 </div>
 
 ## Overview
