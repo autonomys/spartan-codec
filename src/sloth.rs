@@ -64,9 +64,10 @@ fn write_integers_to_array(integer_piece: &[Integer], piece: &mut [u8], block_si
 }
 
 #[derive(Debug)]
-pub struct DataBiggerThanPrime;
+pub(crate) struct DataBiggerThanPrime;
 
-pub(super) struct Sloth<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize> {
+#[derive(Debug, Clone)]
+pub(crate) struct Sloth<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize> {
     prime: Integer,
     exponent: Integer,
 }
@@ -75,7 +76,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
     Sloth<PRIME_SIZE_BYTES, PIECE_SIZE_BYTES>
 {
     /// Inits sloth for a given prime size, deterministically deriving the largest prime and computing the exponent
-    pub(super) fn new() -> Self {
+    pub(crate) fn new() -> Self {
         let mut prime = Integer::from(Integer::u_pow_u(2, (PRIME_SIZE_BYTES * 8) as u32)) - 1;
         prev_prime(&mut prime);
         while prime.mod_u(4) != 3 {
@@ -89,7 +90,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
     }
 
     /// Sequentially encodes a 4096 byte piece s.t. a minimum amount of wall clock time elapses
-    pub fn encode(
+    pub(crate) fn encode(
         &self,
         piece: &mut [u8; PIECE_SIZE_BYTES],
         expanded_iv: [u8; PRIME_SIZE_BYTES],
@@ -125,7 +126,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
     }
 
     /// Sequentially decodes a 4096 byte encoding in time << encode time
-    pub(super) fn decode(
+    pub(crate) fn decode(
         &self,
         piece: &mut [u8; PIECE_SIZE_BYTES],
         expanded_iv: [u8; PRIME_SIZE_BYTES],
@@ -159,7 +160,7 @@ impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
 
     #[cfg(feature = "parallel")]
     /// Decodes a 4096 byte encoding in parallel in time << encode time
-    pub(super) fn decode_parallel(
+    pub(crate) fn decode_parallel(
         &self,
         piece: &mut [u8; PIECE_SIZE_BYTES],
         expanded_iv: [u8; PRIME_SIZE_BYTES],
