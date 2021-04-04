@@ -1,5 +1,3 @@
-#![feature(min_const_generics)]
-
 mod sloth;
 
 use crate::sloth::Sloth;
