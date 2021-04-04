@@ -3,6 +3,11 @@
   <strong>A proof-of-concept encoder for the <a href="https://subspace.network/">Subspace Network Blockchain</a> based on the <a href="https://eprint.iacr.org/2015/366">SLOTH permutation</a></strong>
 </div>
 
+[![CI](https://github.com/subspace/spartan/actions/workflows/ci.yaml/badge.svg)](https://github.com/subspace/spartan/actions/workflows/ci.yaml)
+[![Crates.io](https://img.shields.io/crates/v/spartan-codec?style=flat-square)](https://crates.io/crates/spartan-codec)
+[![Docs](https://img.shields.io/badge/docs-latest-blue.svg?style=flat-square)](https://docs.rs/spartan-codec)
+[![License](https://img.shields.io/github/license/subspace/spartan-codec?style=flat-square)](https://github.com/subspace/spartan-codec)
+
 ## Overview
 
 **Notes:** The code is un-audited and not production ready, use it at your own risk.

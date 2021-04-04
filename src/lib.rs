@@ -14,17 +14,17 @@ pub struct Spartan<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
 
 /// Spartan configured for 64-bit prime and 4096-byte genesis piece size
 pub type Spartan64bit4096 = Spartan<8, 4096>;
-/// Spartan configured for 64-bit prime and 4096-byte genesis piece size
+/// Spartan configured for 128-bit prime and 4096-byte genesis piece size
 pub type Spartan128bit4096 = Spartan<16, 4096>;
-/// Spartan configured for 64-bit prime and 4096-byte genesis piece size
+/// Spartan configured for 256-bit prime and 4096-byte genesis piece size
 pub type Spartan256bit4096 = Spartan<32, 4096>;
-/// Spartan configured for 64-bit prime and 4096-byte genesis piece size
+/// Spartan configured for 512-bit prime and 4096-byte genesis piece size
 pub type Spartan512bit4096 = Spartan<64, 4096>;
-/// Spartan configured for 64-bit prime and 4096-byte genesis piece size
+/// Spartan configured for 1024-bit prime and 4096-byte genesis piece size
 pub type Spartan1024bit4096 = Spartan<128, 4096>;
-/// Spartan configured for 64-bit prime and 4096-byte genesis piece size
+/// Spartan configured for 2048-bit prime and 4096-byte genesis piece size
 pub type Spartan2048bit4096 = Spartan<256, 4096>;
-/// Spartan configured for 64-bit prime and 4096-byte genesis piece size
+/// Spartan configured for 4096-bit prime and 4096-byte genesis piece size
 pub type Spartan4096bit4096 = Spartan<512, 4096>;
 
 impl<const PRIME_SIZE_BYTES: usize, const PIECE_SIZE_BYTES: usize>
