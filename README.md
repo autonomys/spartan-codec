@@ -12,6 +12,7 @@ Subspace is a proof-of-storage blockchain that resolves the farmer's dilemma, to
 This is an adpation of <a href="https://eprint.iacr.org/2015/366">SLOTH</a> (slow-timed hash function) into a time-asymmetric permutation using a standard CBC block cipher. This code is largely based on the C implementation used in <a href="https://github.com/randomchain/pysloth/blob/master/sloth.c">PySloth</a> which is the same as used in the paper.
 
 ### Install
+This crate requires Rust 1.51 or newer to compile.
 
 If you have not previously installed the `gmp_mpfr_sys` crate, follow these [instructions](https://docs.rs/gmp-mpfr-sys/1.3.0/gmp_mpfr_sys/index.html#building-on-gnulinux).
 
