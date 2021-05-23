@@ -29,10 +29,14 @@ cargo build
 
 ### Run Tests
 
-`cargo test`
+```
+cargo test
+```
 
 ### Run Benches
 
-TODO
+```
+cargo bench --bench codec
+```
 
-Benches single block encode/decode time and full piece encode/decode time for each prime size.
+Benches single block encoding, parallel encoding (will depend on number of cores) and verification time for a prime size of 256 bits.
