@@ -21,10 +21,9 @@ This crate requires Rust 1.51 or newer to compile.
 
 If you have not previously installed the `gmp_mpfr_sys` crate, follow these [instructions](https://docs.rs/gmp-mpfr-sys/1.3.0/gmp_mpfr_sys/index.html#building-on-gnulinux).
 
+Add following to `Cargo.toml`:
 ```
-git clone https://github.com/subspace/spartan-codec.git
-cd spartan-codec
-cargo build
+spartan-codec = "0.2.0"
 ```
 
 ### Run Tests
@@ -36,7 +35,7 @@ cargo test
 ### Run Benches
 
 ```
-cargo bench --bench codec
+cargo bench
 ```
 
 Benches single block encoding, parallel encoding (will depend on number of cores) and verification time for a prime size of 256 bits.
