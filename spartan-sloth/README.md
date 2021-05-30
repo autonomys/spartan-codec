@@ -44,9 +44,9 @@ Benches single block encoding, parallel encoding (will depend on number of cores
 
 ### Software benchmark results
 
-#### AMD 5950x CPU / 3600MHz CL16 RAM
+#### AMD 5900x CPU / 3600MHz CL16 RAM
 System config:
-* CPU: AMD 5950x with XFR enabled (12 cores, 24 threads)
+* CPU: AMD 5900x with XFR enabled (12 cores, 24 threads)
 * RAM: 128G (4x32) Crucial Ballistix BL2K32G36C16U4B (3600MHz CL16)
 
 Results:
