@@ -34,6 +34,12 @@ cargo test
 cargo bench
 ```
 
+To skip software-based SLOTH implementation (hard to setup on Windows) and just test x86-64:
+```
+cd spartan-sloth
+cargo bench --no-default-features --bench x86_64
+```
+
 Benches single block encoding, parallel encoding (will depend on number of cores) and decoding time for a prime size of 256 bits.
 
 ### Software benchmark results
