@@ -35,3 +35,15 @@ cargo bench
 ```
 
 Benches single block encoding, parallel encoding (will depend on number of cores) and decoding time for a prime size of 256 bits.
+
+### Software benchmark results
+
+#### AMD 5950x CPU / 3600MHz CL16 RAM
+System config:
+* CPU: AMD 5950x with XFR enabled (12 cores, 24 threads)
+* RAM: 128G (4x32) Crucial Ballistix BL2K32G36C16U4B (3600MHz CL16)
+
+Results:
+* Software/Encode-single: 1.4605 ms
+* Software/Encode-parallel: 104.68 us
+* Software/Decode: 38.711 us

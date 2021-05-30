@@ -23,6 +23,11 @@ rayon = "1.5.1"
 
 [[bench]]
 name = "software"
+required-features = ["software"]
+harness = false
+
+[[bench]]
+name = "x86_64"
 harness = false
 
 [features]
