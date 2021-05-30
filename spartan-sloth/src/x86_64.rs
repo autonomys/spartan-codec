@@ -8,6 +8,7 @@ pub struct DataBiggerThanPrime;
 pub struct Sloth {}
 
 impl Sloth {
+    #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
         todo!()
     }
@@ -15,14 +16,14 @@ impl Sloth {
     /// Sequentially encodes a 4096 byte piece
     pub fn encode(
         &self,
-        piece: &mut [u8; 4096],
-        expanded_iv: [u8; 32],
+        _piece: &mut [u8; 4096],
+        _expanded_iv: [u8; 32],
     ) -> Result<(), DataBiggerThanPrime> {
         todo!()
     }
 
     /// Decodes a 4096 byte encoding in time << encode time
-    pub fn decode(&self, piece: &mut [u8; 4096], expanded_iv: [u8; 32]) {
+    pub fn decode(&self, _piece: &mut [u8; 4096], _expanded_iv: [u8; 32]) {
         todo!()
     }
 }
