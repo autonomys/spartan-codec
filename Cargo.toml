@@ -1,35 +1,5 @@
-[package]
-name = "spartan-codec"
-version = "0.1.0"
-description = "A proof-of-concept encoder for the Subspace Network Blockchain based on the SLOTH permutation"
-authors = ["Nazar Mokrynskyi <nazar@mokrynskyi.com>"]
-edition = "2018"
-license = "MIT"
-documentation = "https://docs.rs/spartan-codec"
-repository = "https://github.com/subspace/spartan-codec"
-include = [
-    "/src",
-    "/Cargo.toml",
-    "/README.md",
+[workspace]
+members = [
+    "spartan-codec",
+    "spartan-sloth",
 ]
-readme = "README.md"
-
-[dependencies]
-rug = "1.12.0"
-
-[dependencies.rayon]
-optional = true
-version = "1.5.1"
-
-[dev-dependencies]
-criterion = "0.3.4"
-rand = "0.8.3"
-rayon = "1.5.1"
-
-[features]
-default = ["parallel"]
-parallel = ["rayon"]
-
-[[bench]]
-name = "codec"
-harness = false
